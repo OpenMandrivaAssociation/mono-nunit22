@@ -44,23 +44,23 @@ cd src
 nant mono-2.0 release build-all
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 cd src/
 nant mono-2.0 copy-bins
-%{__mkdir_p} $RPM_BUILD_ROOT/%{_datadir}/pkgconfig
-cp -p %{S:1} $RPM_BUILD_ROOT/%{_datadir}/pkgconfig
-mkdir -p $RPM_BUILD_ROOT/%_prefix/lib/mono/gac/
+%{__mkdir_p} %{buildroot}/%{_datadir}/pkgconfig
+cp -p %{S:1} %{buildroot}/%{_datadir}/pkgconfig
+mkdir -p %{buildroot}/%_prefix/lib/mono/gac/
 cd package/NUnit-%{version}
-gacutil -i bin/nunit-console.exe -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit-console-runner.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.core.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.core.extensions.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.framework.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.mocks.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.util.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
+gacutil -i bin/nunit-console.exe -f -package nunit22 -root %{buildroot}/%_prefix/lib
+gacutil -i bin/nunit-console-runner.dll -f -package nunit22 -root %{buildroot}/%_prefix/lib
+gacutil -i bin/nunit.core.dll -f -package nunit22 -root %{buildroot}/%_prefix/lib
+gacutil -i bin/nunit.core.extensions.dll -f -package nunit22 -root %{buildroot}/%_prefix/lib
+gacutil -i bin/nunit.framework.dll -f -package nunit22 -root %{buildroot}/%_prefix/lib
+gacutil -i bin/nunit.mocks.dll -f -package nunit22 -root %{buildroot}/%_prefix/lib
+gacutil -i bin/nunit.util.dll -f -package nunit22 -root %{buildroot}/%_prefix/lib
 
 %clean
-rm -rf -rf $RPM_BUILD_ROOT
+rm -rf -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
