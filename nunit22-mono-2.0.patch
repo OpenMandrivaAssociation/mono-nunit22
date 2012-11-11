@@ -1,0 +1,30 @@
+diff -p -up mono-nunit22-2.2.10/src/nunit.build.include.mono-2.0 mono-nunit22-2.2.10/src/nunit.build.include
+--- mono-nunit22-2.2.10/src/nunit.build.include.mono-2.0	2007-03-12 09:56:44.000000000 +0100
++++ mono-nunit22-2.2.10/src/nunit.build.include	2010-10-14 17:01:55.000000000 +0200
+@@ -31,8 +31,8 @@
+     <call target="set-net-2.0-runtime-config"/>
+   </target>
+       
+-  <target name="mono" description="Set runtime to Mono 1.0 Profile">
+-    <call target="set-mono-1.0-runtime-config"/>
++  <target name="mono" description="Set runtime to Mono 2.0 Profile">
++    <call target="set-mono-2.0-runtime-config"/>
+   </target>
+ 
+   <target name="mono-1.0" description="Set runtime to Mono 1.0 Profile">
+@@ -76,7 +76,7 @@
+     <!-- Frameworks supported by this build script. The first
+          installed framework found is the default for builds. --> 
+     <property name="supported.frameworks" 
+-      value="net-2.0,net-1.1,net-1.0,mono-1.0,mono-2.0"/>
++      value="mono-2.0"/>
+   
+     <!-- Visual Studio locations -->
+     <if test="${platform::is-win32()}">
+@@ -329,4 +329,4 @@
+     <echo>  VS 2005:      ${vs.2005.path}</echo>
+   </target>
+ 
+-</project>
+\ Kein Zeilenumbruch am Dateiende.
++</project>
