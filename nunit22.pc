@@ -1,0 +1,8 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${prefix}/lib
+
+Name: nunit22
+Description: nunit22 - Unit-testing framework for .NET
+Version: 2.2.10
+Libs: -r:${libdir}/mono/nunit22/nunit-console-runner.dll -r:${libdir}/mono/nunit22/nunit.core.dll -r:${libdir}/mono/nunit22/nunit.core.extensions.dll -r:${libdir}/mono/nunit22/nunit.framework.dll -r:${libdir}/mono/nunit22/nunit.mocks.dll -r:${libdir}/mono/nunit22/nunit.util.dll
