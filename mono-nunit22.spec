@@ -1,18 +1,17 @@
+Summary:	Unit-testing framework for .NET
 Name:		mono-nunit22
 Version:	2.2.10
-Release:	%mkrel 3
-Summary:	Unit-testing framework for .NET
-URL:		http://www.nunit.org/
+Release:	3
 License:	MIT with acknowledgement
 Group:		Development/Other
+Url:		http://www.nunit.org/
 Source0:	http://downloads.sourceforge.net/nunit/NUnit-2.2.10-src.zip
 Source1:	nunit22.pc
 Patch0:		nunit22-mono-2.0.patch
 Patch1:		nunit22-key.patch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires:	nant
+BuildArch:	noarch
 BuildRequires:	unzip
-BuildArch: noarch
+BuildRequires:	pkgconfig(nant)
 
 %description
 NUnit is a unit-testing framework for all .Net languages. Initially ported from
@@ -30,7 +29,7 @@ Requires:	%{name} = %{version}-%{release}
 Development files for mono-nunit22.
 
 %prep
-%setup -q -c -n %{name}-%{version}
+%setup -q -c
 %apply_patches
 
 %build
@@ -44,43 +43,25 @@ cd src
 nant mono-2.0 release build-all
 
 %install
-rm -rf $RPM_BUILD_ROOT
 cd src/
 nant mono-2.0 copy-bins
-%{__mkdir_p} $RPM_BUILD_ROOT/%{_datadir}/pkgconfig
-cp -p %{S:1} $RPM_BUILD_ROOT/%{_datadir}/pkgconfig
-mkdir -p $RPM_BUILD_ROOT/%_prefix/lib/mono/gac/
+mkdir -p %{buildroot}/%{_datadir}/pkgconfig
+cp -p %{SOURCE1} %{buildroot}/%{_datadir}/pkgconfig
+mkdir -p %{buildroot}/%{_prefix}/lib/mono/gac/
 cd package/NUnit-%{version}
-gacutil -i bin/nunit-console.exe -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit-console-runner.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.core.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.core.extensions.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.framework.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.mocks.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-gacutil -i bin/nunit.util.dll -f -package nunit22 -root ${RPM_BUILD_ROOT}/%_prefix/lib
-
-%clean
-rm -rf -rf $RPM_BUILD_ROOT
+gacutil -i bin/nunit-console.exe -f -package nunit22 -root %{buildroot}/%{_prefix}/lib
+gacutil -i bin/nunit-console-runner.dll -f -package nunit22 -root %{buildroot}/%{_prefix}/lib
+gacutil -i bin/nunit.core.dll -f -package nunit22 -root %{buildroot}/%{_prefix}/lib
+gacutil -i bin/nunit.core.extensions.dll -f -package nunit22 -root %{buildroot}/%{_prefix}/lib
+gacutil -i bin/nunit.framework.dll -f -package nunit22 -root %{buildroot}/%{_prefix}/lib
+gacutil -i bin/nunit.mocks.dll -f -package nunit22 -root %{buildroot}/%{_prefix}/lib
+gacutil -i bin/nunit.util.dll -f -package nunit22 -root %{buildroot}/%{_prefix}/lib
 
 %files
-%defattr(-,root,root,-)
 %doc src/license.rtf
-%_prefix/lib/mono/gac/*/
-%_prefix/lib/mono/nunit22/
+%{_prefix}/lib/mono/gac/*/
+%{_prefix}/lib/mono/nunit22/
 
 %files devel
-%defattr(-,root,root,-)
 %{_datadir}/pkgconfig/nunit22.pc
-
-
-
-
-%changelog
-* Wed May 04 2011 Oden Eriksson <oeriksson@mandriva.com> 2.2.10-2mdv2011.0
-+ Revision: 666480
-- mass rebuild
-
-* Thu Oct 14 2010 Götz Waschk <waschk@mandriva.org> 2.2.10-1mdv2011.0
-+ Revision: 585626
-- import mono-nunit22
 
