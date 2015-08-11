@@ -12,6 +12,7 @@ Patch1:		nunit22-key.patch
 BuildArch:	noarch
 BuildRequires:	unzip
 BuildRequires:	pkgconfig(nant)
+BuildRequires:	pkgconfig(mono)
 
 %description
 NUnit is a unit-testing framework for all .Net languages. Initially ported from
