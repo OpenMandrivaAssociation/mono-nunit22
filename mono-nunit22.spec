@@ -1,7 +1,7 @@
 Summary:	Unit-testing framework for .NET
 Name:		mono-nunit22
 Version:	2.2.10
-Release:	12
+Release:	13
 License:	MIT with acknowledgement
 Group:		Development/Other
 Url:		http://www.nunit.org/
