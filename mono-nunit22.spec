@@ -32,7 +32,7 @@ Development files for mono-nunit22.
 
 %prep
 %setup -q -c
-%apply_patches
+%autopatch -p1
 
 %build
 # Use the mono system key instead of generating our own here.
