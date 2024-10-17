@@ -4,7 +4,7 @@ Version:	2.2.10
 Release:	13
 License:	MIT with acknowledgement
 Group:		Development/Other
-Url:		http://www.nunit.org/
+Url:		https://www.nunit.org/
 Source0:	http://downloads.sourceforge.net/nunit/NUnit-2.2.10-src.zip
 Source1:	nunit22.pc
 Patch0:		nunit22-mono-2.0.patch
